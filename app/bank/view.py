@@ -77,6 +77,7 @@ class Remove(MethodView):
             db.session.delete(requisite)
             db.session.commit()
             return {'message': 'Requisites successfully deleted'}
+        return {'message': 'Incorrect id'}
 
 
 class Activity(MethodView):
@@ -108,6 +109,11 @@ router.add_url_rule(
     '/edit',
     view_func=Edit.as_view('edit_requisite'),
     methods=['UPDATE']
+)
+router.add_url_rule(
+    '/remove',
+    view_func=Remove.as_view('remove_requisite'),
+    methods=['DELETE']
 )
 router.add_url_rule(
     '/activity',
