@@ -32,6 +32,7 @@ class Login(MethodView):
         if user is not None and bcrypt.check_password_hash(user.password, password):
             access_token = create_access_token(identity=email)
             return jsonify(access_token)
+        return {'message': 'Credentials Error'}
 
 
 router.add_url_rule(
