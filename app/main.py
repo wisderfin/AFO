@@ -21,5 +21,8 @@ def main():
 from app.auth.view import router as auth
 app.register_blueprint(auth)
 
+from app.bank.view import router as bank
+app.register_blueprint(bank)
+
 if __name__ == '__main__':
     app.run(debug=True)
