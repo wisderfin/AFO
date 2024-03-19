@@ -1,9 +1,9 @@
-from flask import jsonify, Blueprint, request
+from flask import Blueprint, request
 from flask.views import MethodView
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from app.bank.model import Requisites
-from app.main import db, bcrypt
+from app.main import db
 from app.auth.model import User
 
 router = Blueprint('bank', __name__)

@@ -1,5 +1,4 @@
 from app.main import db
-from settings import settings
 
 
 class Requisites(db.Model):
