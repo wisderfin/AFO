@@ -23,10 +23,10 @@
 
 ### Глобальные переменые для доступа к БД
 - HOST - ``` localhost ```
-- port - ``` 5432 ```
-- password - ``` postgres ```
-- user - ``` postgres ```
-- name - ``` afo ```
+- PORT - ``` 5432 ```
+- PASSWORD - ``` postgres ```
+- USER - ``` postgres ```
+- NAME - ``` afo ```
 
 URL для поключения к бд - ``` postgresql://postgres:postgres@localhost:5432/afo ```
 
