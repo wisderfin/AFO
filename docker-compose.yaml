@@ -13,7 +13,7 @@ services:
   flask:
     build:
       context: .
-    command: sh -c "alembic upgrade head && python -m flask --app app.main run --host=0.0.0.0 --port=5000 --reload --debug"
+    command: sh -c "alembic revision --autogenerate -m "create_table_of_regestration" && alembic upgrade head && python -m flask --app app run --host=0.0.0.0 --port=5000 --reload --debug"
     ports:
       - "5000:5000"
     volumes:

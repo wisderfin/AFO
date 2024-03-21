@@ -3,10 +3,11 @@ from flask.views import MethodView
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from app.bank.model import Requisites
-from app.main import db
 from app.auth.model import User
+from app import db
 
 router = Blueprint('bank', __name__)
+
 
 class New_Requisites(MethodView):
     @staticmethod
@@ -23,11 +24,12 @@ class New_Requisites(MethodView):
         db.session.commit()
         return {'message': 'Requisites successfully added'}
 
+
 class Get_List(MethodView):
     @staticmethod
     @jwt_required()
     def get():
-        user_id=User.query.filter_by(email=get_jwt_identity()).first().id
+        user_id = User.query.filter_by(email=get_jwt_identity()).first().id
         res = Requisites.query.filter_by(user_id=user_id)
         requisites_list = {}
         for req in res:
@@ -38,6 +40,7 @@ class Get_List(MethodView):
                 'ks': req.ks
             }
         return requisites_list
+
 
 class Edit(MethodView):
     @staticmethod
@@ -87,7 +90,8 @@ class Activity(MethodView):
         id = request.form['id']
         user_id = User.query.filter_by(email=get_jwt_identity()).first().id
         requisite = Requisites.query.filter_by(id=id).first()
-        down_activity = db.session.query(Requisites).filter(Requisites.user_id == user_id, Requisites.activity == True).first()
+        down_activity = db.session.query(Requisites).filter(Requisites.user_id == user_id,
+                                                            Requisites.activity == True).first()
         if down_activity:
             down_activity.activity = False
         requisite.activity = True

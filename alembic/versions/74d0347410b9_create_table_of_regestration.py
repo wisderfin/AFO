@@ -1,8 +1,8 @@
-"""create table of registration
+"""create_table_of_regestration
 
-Revision ID: 4083b196fbe7
-Revises: 2c51b7aa86db
-Create Date: 2024-03-19 13:54:58.937314
+Revision ID: 74d0347410b9
+Revises: 299fef7848ab
+Create Date: 2024-03-21 21:15:23.812905
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '4083b196fbe7'
-down_revision: Union[str, None] = '2c51b7aa86db'
+revision: str = '74d0347410b9'
+down_revision: Union[str, None] = '299fef7848ab'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -26,6 +26,7 @@ def upgrade() -> None:
     sa.Column('bik', sa.Integer(), nullable=False),
     sa.Column('rs', sa.Integer(), nullable=False),
     sa.Column('ks', sa.Integer(), nullable=False),
+    sa.Column('activity', sa.Boolean(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('bik'),

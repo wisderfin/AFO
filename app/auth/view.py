@@ -3,9 +3,8 @@ from flask.views import MethodView
 from flask_jwt_extended import create_access_token
 
 from app.auth.model import User
-from app.main import db, bcrypt
+from app import db, bcrypt
 
-router = Blueprint('auth', __name__)
 
 class Registration(MethodView):
     @staticmethod
@@ -15,13 +14,13 @@ class Registration(MethodView):
         if user is None:
             user = User(
                 email=email,
-                login=request.form['login'],
                 password=request.form['password']
             )
             db.session.add(user)
             db.session.commit()
             return {'message': 'User successfully registered'}
         return {'message': 'User already registered'}
+
 
 class Login(MethodView):
     @staticmethod
@@ -34,6 +33,8 @@ class Login(MethodView):
             return jsonify(access_token)
         return {'message': 'Credentials Error'}
 
+
+router = Blueprint('auth', __name__)
 
 router.add_url_rule(
     '/auth/registration',
