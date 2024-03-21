@@ -8,16 +8,19 @@ from app import db, bcrypt
 class Registration(MethodView):
     @staticmethod
     def post():
-        email = request.form['email']
+        email = request.form['email'].strip()
         user = db.session.query(User).filter(User.email == request.form['email']).first()
         if user is None:
-            user = User(
-                email=email,
-                password=request.form['password']
-            )
-            db.session.add(user)
-            db.session.commit()
-            return {'message': 'User successfully registered'}
+            password = request.form['password'].strip()
+            if email and password:
+                user = User(
+                    email=email,
+                    password=password
+                )
+                db.session.add(user)
+                db.session.commit()
+                return {'message': 'User successfully registered'}
+            return {'message': 'Incorrect data'}
         return {'message': 'User already registered'}
 
 
