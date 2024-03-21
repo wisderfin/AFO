@@ -1,15 +1,15 @@
 from flask import Blueprint, request, session
 from flask.views import MethodView
-
 from app.auth.model import User
-from app import db, bcrypt
+from app import bcrypt
+from app.auth.utils import check_user, db_save
 
 
 class Registration(MethodView):
     @staticmethod
     def post():
         email = request.form['email'].strip()
-        user = db.session.query(User).filter(User.email == request.form['email']).first()
+        user = check_user(email)
         if user is None:
             password = request.form['password'].strip()
             if email and password:
@@ -17,8 +17,7 @@ class Registration(MethodView):
                     email=email,
                     password=password
                 )
-                db.session.add(user)
-                db.session.commit()
+                db_save(user)
                 return {'message': 'User successfully registered'}
             return {'message': 'Incorrect data'}
         return {'message': 'User already registered'}
@@ -29,7 +28,7 @@ class Login(MethodView):
     def post():
         email = request.form['email']
         password = request.form['password']
-        user = db.session.query(User).filter_by(email=request.form['email']).first()
+        user = check_user(email)
         if user is not None and bcrypt.check_password_hash(user.password, password):
             session['session'] = email
             return {'message': 'Entry successful'}
