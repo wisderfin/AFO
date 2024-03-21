@@ -1,4 +1,4 @@
-"""create
+"""create users db
 
 Revision ID: 2c51b7aa86db
 Revises: 

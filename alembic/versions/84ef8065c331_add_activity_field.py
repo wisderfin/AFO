@@ -1,4 +1,4 @@
-"""add
+"""add activity field
 
 Revision ID: 84ef8065c331
 Revises: 4083b196fbe7

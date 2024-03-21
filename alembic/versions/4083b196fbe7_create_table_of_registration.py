@@ -1,4 +1,4 @@
-"""create
+"""create table of registration
 
 Revision ID: 4083b196fbe7
 Revises: 2c51b7aa86db
