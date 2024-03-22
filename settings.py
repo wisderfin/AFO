@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: str
     BCRYPT_LOG_ROUNDS: int
-    JWT_KEY: str
+    SECRET_KEY: str
 
     class Config:
         env_file = '.env'
