@@ -10,5 +10,7 @@ class Requisites(Base):
     bik = db.Column(db.BigInteger, nullable=False, unique=True)
     rs = db.Column(db.BigInteger, nullable=False, unique=True)
     ks = db.Column(db.BigInteger, nullable=False, unique=True)
-    activity = db.Column(db.Boolean, default=False)
+    swift = db.Column(db.String(35), nullable=False, unique=True)
+    iban = db.Column(db.String(11), default=None)
     user_id = db.Column(db.Integer, nullable=False)
+    activity = db.Column(db.Boolean, default=False)

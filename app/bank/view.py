@@ -19,11 +19,13 @@ class RequisitesAPI(MethodView):
                     bik=request.form['bik'],
                     rs=request.form['rs'],
                     ks=request.form['ks'],
+                    swift=request.form['swift'],
+                    iban=request.form.get('iban', None),
                     user_id=get_user_id()
                 )
                 db_save(requisites)
             except Exception as _ex:
-                return {'message': 'Incorrect data'}
+                return {'message': f'Incorrect data'}
             return {'message': 'Requisites successfully added'}
         return {'message': 'Entry is not executed'}
 
@@ -37,7 +39,9 @@ class RequisitesAPI(MethodView):
                     'bank': req.bank,
                     'bik': req.bik,
                     'rs': req.rs,
-                    'ks': req.ks
+                    'ks': req.ks,
+                    'swift': req.swift,
+                    'iban': req.iban
                 }
             return requisites_dict
         return {"message": 'Entry is not executed'}
@@ -50,6 +54,9 @@ class RequisitesAPI(MethodView):
             bik = request.form.get('bik', None)
             rs = request.form.get('rs', None)
             ks = request.form.get('ks', None)
+            swift = request.form.get('swift', None)
+            iban = request.form.get('iban', None)
+
             requisite = get_requisite(id)
 
             if get_user_id() is None or requisite is None:
@@ -64,6 +71,11 @@ class RequisitesAPI(MethodView):
                     requisite.rs = rs
                 if ks is not None:
                     requisite.ks = ks
+                if swift is not None:
+                    requisite.swift = swift
+                if iban is not None:
+                    requisite.iban = iban
+
                 try:
                     db.session.commit()
                 except Exception as _ex:

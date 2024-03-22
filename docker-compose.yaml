@@ -27,4 +27,5 @@ services:
       - .:/app
     depends_on:
       - postgres
+      - alembic
     restart: always

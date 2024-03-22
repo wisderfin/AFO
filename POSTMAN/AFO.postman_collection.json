@@ -110,6 +110,16 @@
 							"key": "ks",
 							"value": "12345",
 							"type": "text"
+						},
+						{
+							"key": "swift",
+							"value": "123qwer",
+							"type": "text"
+						},
+						{
+							"key": "iban",
+							"value": "123qwer",
+							"type": "text"
 						}
 					]
 				},
@@ -153,14 +163,44 @@
 		{
 			"name": "/requisite",
 			"request": {
-				"method": "DELETE",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "id",
-							"value": "1",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "ks",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "bic",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "rs",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "bank",
+							"value": "sber",
+							"type": "text"
+						},
+						{
+							"key": "swift",
+							"value": "qwer123",
+							"type": "text"
+						},
+						{
+							"key": "iban",
+							"value": "qwer123",
 							"type": "text"
 						}
 					]
@@ -184,34 +224,14 @@
 		{
 			"name": "/requisite",
 			"request": {
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "id",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "ks",
-							"value": "12345",
-							"type": "text"
-						},
-						{
-							"key": "bic",
-							"value": "12345",
-							"type": "text"
-						},
-						{
-							"key": "rs",
-							"value": "12345",
-							"type": "text"
-						},
-						{
-							"key": "bank",
-							"value": "sber",
+							"value": "3",
 							"type": "text"
 						}
 					]
@@ -242,13 +262,13 @@
 					"formdata": [
 						{
 							"key": "id",
-							"value": "10",
+							"value": "3",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "127.0.0.1:5000/activity?id=1",
+					"raw": "127.0.0.1:5000/activity",
 					"host": [
 						"127",
 						"0",
@@ -258,12 +278,6 @@
 					"port": "5000",
 					"path": [
 						"activity"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
 					]
 				}
 			},
