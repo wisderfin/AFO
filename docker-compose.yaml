@@ -9,11 +9,18 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
-
+  alembic:
+    build:
+      context: .
+    command: sh -c "alembic upgrade head"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
   flask:
     build:
       context: .
-    command: sh -c "alembic upgrade head && python -m flask --app app.main run --host=0.0.0.0 --port=5000 --reload --debug"
+    command: sh -c "python -m flask --app app run --host=0.0.0.0 --port=5000 --reload --debug"
     ports:
       - "5000:5000"
     volumes:
